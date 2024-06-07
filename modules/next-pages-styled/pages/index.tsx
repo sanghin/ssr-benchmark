@@ -10,15 +10,7 @@ const TableDataBlue = styled.tr`background-color: blue;`
 const TableDataWhite = styled.tr`background-color: white;`
 const TableDataRed = styled.tr`background-color: red;`
 
-export const getServerSideProps = async () => {
-  return {
-    props: {
-      data: await testData(),
-    },
-  };
-};
-
-function App({ data }: { data: Awaited<ReturnType<typeof testData>> }) {
+function App({ props: {data} }: any) {
   return <Table data={data} />;
 }
 
@@ -47,5 +39,13 @@ function Entry(props: {
     </Flags>
   );
 }
+
+App.getInitialProps = async () => {
+  return {
+    props: {
+      data: await testData(),
+    },
+  };
+};
 
 export default App;

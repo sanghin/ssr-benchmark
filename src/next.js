@@ -1,11 +1,11 @@
 import next from "next";
 
-// export async function buildNextHandler() {
+// export async function buildNextStyledHandler() {
 //   const app = next({
 //     dev: false,
 //     hostname: "localhost",
 //     port: 3000,
-//     dir: "./modules/next",
+//     dir: "./modules/next-styled",
 //   });
 //   await app.prepare();
 //   return app.getRequestHandler();

@@ -1,10 +1,6 @@
 import { Bench } from "tinybench";
 import { IncomingMessage, ServerResponse } from "./http.js";
-// import { buildRemixHandler } from "./remix.js";
 import { buildNextPagesHandler, buildNextPagesStyledHandler } from "./next.js";
-// import { buildNuxtHandler } from "./nuxt.js";
-// import { buildSveltekitHandler } from "./svelte.js";
-// import { buildAstroHandler } from "./astro.js";
 import http from "node:http";
 import { getDuplicationFactor, logResultsTable } from "./result-format.js";
 
@@ -48,26 +44,6 @@ async function runHandlers(handlers) {
 }
 
 const handlers = [
-  // {
-  //   name: "solid",
-  //   group: "renderers",
-  //   handler: await import("solid-benchmark").then((x) => x.buildHandler()),
-  // },
-  // {
-  //   name: "react",
-  //   handler: await import("react-benchmark").then((x) => x.buildHandler()),
-  // },
-  // {
-  //   name: "vue",
-  //   group: "renderers",
-  //   handler: await import("vue-benchmark").then((x) => x.buildHandler()),
-  // },
-  // {
-  //   name: "mfng",
-  //   group: "frameworks",
-  //   handler: await import("mfng-benchmark").then((x) => x.buildHandler()),
-  // },
-  // { name: "remix", group: "frameworks", handler: await buildRemixHandler() },
   // { name: "next", group: "frameworks", handler: await buildNextHandler() },
   {
     name: "next-pages",
@@ -79,45 +55,10 @@ const handlers = [
     group: "frameworks",
     handler: await buildNextPagesStyledHandler(),
   },
-  // { name: "nuxt", group: "frameworks", handler: await buildNuxtHandler() },
-  // {
-  //   name: "sveltekit",
-  //   group: "frameworks",
-  //   handler: await buildSveltekitHandler(),
-  // },
-  // { name: "astro", group: "frameworks", handler: await buildAstroHandler() },
-  // {
-  //   name: "hono",
-  //   group: "renderers",
-  //   handler: await import("hono-benchmark").then((x) => x.buildHandler()),
-  // },
-  // {
-  //   name: "marko",
-  //   group: "renderers",
-  //   handler: await import("marko-benchmark").then((x) => x.buildHandler()),
-  // },
-  // {
-  //   name: "kita",
-  //   group: "renderers",
-  //   handler: await import("kita-benchmark").then((x) => x.handler),
-  // },
-  // {
-  //   name: "qwik",
-  //   group: "renderers",
-  //   handler: await import("qwik-benchmark").then((x) => x.handler),
-  // },
-  // {
-  //   name: "qwik-city",
-  //   group: "frameworks",
-  //   handler: await import("qwik-city-benchmark").then((x) => x.handler),
-  // },
 ];
 
 console.log("Benchmarking frameworks");
 await runHandlers(handlers.filter((x) => !x.group || x.group == "frameworks"));
-
-// console.log("Benchmarking renderers");
-// await runHandlers(handlers.filter((x) => !x.group || x.group == "renderers"));
 
 console.log();
 console.log("Check out the actual render results:");

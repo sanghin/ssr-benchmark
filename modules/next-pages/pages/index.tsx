@@ -1,15 +1,7 @@
-import { Suspense, useRef, use } from "react";
 import { testData } from "testdata";
 
-export const getServerSideProps = async () => {
-  return {
-    props: {
-      data: await testData(),
-    },
-  };
-};
 
-function App({ data }: { data: Awaited<ReturnType<typeof testData>> }) {
+function App({ props: {data} }: any) {
   return <Table data={data} />;
 }
 
@@ -35,5 +27,13 @@ function Entry(props: {
     </tr>
   );
 }
+
+App.getInitialProps = async () => {
+  return {
+    props: {
+      data: await testData(),
+    },
+  };
+};
 
 export default App;
